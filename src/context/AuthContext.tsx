@@ -9,7 +9,7 @@ export const INITIAL_USER = {
   username: '',
   email: '',
   imageUrl: '',
-  bio: '',
+  bio: ''
 };
 
 const INITIAL_STATE = {
@@ -41,8 +41,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           username: currentAccount.username,
           email: currentAccount.email,
           imageUrl: currentAccount.imageUrl,
-          bio: currentAccount.bio,
-        });
+          bio: currentAccount.bio
+        })
 
         setIsAuthenticated(true);
         return true;
@@ -80,4 +80,4 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 export default AuthProvider;
 
-export const  useUserContext = () => (AuthContext);
+export const useUserContext = () => useContext(AuthContext);

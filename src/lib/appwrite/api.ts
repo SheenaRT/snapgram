@@ -1,7 +1,8 @@
-import { ID } from 'appwrite';
+import { ID, Query } from 'appwrite';
 
 import { INewUser } from '@/types';
-import { account, avatars, databases } from './config';
+import { account, appwriteConfig, avatars, databases } from './config';
+
 
 export async function createUserAccount(user: INewUser) {
   try {
@@ -57,8 +58,9 @@ export async function signInAccount(user: { email: string; password: string;}) {
 const session = await account.createEmailSession(user.email, user.password);
 
 return session;
-  } catch (error)
+  } catch (error){
   console.log(error);
+}
 }
 
 export async function getCurrentUser() {

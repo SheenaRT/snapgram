@@ -16,8 +16,11 @@ import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 import { SignupValidation } from '@/lib/validation';
 import { z } from 'zod';
-import { Loader } from 'lucide-react';
-import { useCreateUserAccount, useSignInAccount } from '@/lib/react-query/queriesAndMutations';
+import Loader from '@/components/shared/Loader';
+import {
+  useCreateUserAccount,
+  useSignInAccount,
+} from '@/lib/react-query/queriesAndMutations';
 import { useUserContext } from '@/context/AuthContext';
 
 const SignUpForm = () => {
@@ -25,10 +28,10 @@ const SignUpForm = () => {
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
   const navigate = useNavigate();
 
-  const { mutateAsync: createUserAccount, isLoading: isCreatingAccount } =
+  const { mutateAsync: createUserAccount, isPending: isCreatingAccount } =
     useCreateUserAccount();
 
-  const { mutateAsync: signInAccount, isLoading: isSigningIn } =
+  const { mutateAsync: signInAccount, isPending: isSigningIn } =
     useSignInAccount();
 
   // 1. Define your form.
@@ -142,7 +145,7 @@ const SignUpForm = () => {
             )}
           />
           <Button type='submit' className='shad-button_primary'>
-            {isCreatingUser ? (
+            {isCreatingAccount ? (
               <div className='flex-center gap-2'>
                 <Loader />
                 Loading...
